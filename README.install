@@ -10,7 +10,7 @@ sudo yum -y update
 
 ### REBOOT to LOAD NEW KERNEL
 uname -r
-sudo eboot
+sudo reboot
 uname -r
 
 
@@ -32,11 +32,10 @@ sudo vim /etc/httpd/conf/httpd.conf
 
 ### INSTALL PHP and PHP-ZTS for PRE-FORKING
 sudo yum install php
-#yum install php-zts
 
 ### ADJUST TIME ZONE
 sudo ln --symbolic --force /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
-sudo ntpd restart
+sudo service ntpd restart
 
 ### RESTART HTTPD
 sudo service httpd restart
