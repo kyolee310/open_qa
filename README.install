@@ -1,0 +1,51 @@
+### HOW TO INSTALL OPEN_QA ON AWS
+
+=== AMAZON LINUX AMI ===
+
+### LOGIN AS USER ec2-user
+ssh -i <mykey> ec2-user@ec2-50-112-23-171.us-west-2.compute.amazonaws.com
+
+### UPDATE THE IMAGE
+sudo yum -y update
+
+### REBOOT to LOAD NEW KERNEL
+uname -r
+sudo eboot
+uname -r
+
+
+### INSTAL APACHE2
+sudo yum -y install httpd
+sudo chkconfig httpd on
+sudo service httpd start
+sudo netstat -tulpn | grep :80
+sudo httpd -V
+
+### ADJUST TO ALLOW PRE-FORKING
+sudo vim /etc/sysconfig/httpd 
+    HTTPD=/usr/sbin/httpd.worker
+
+### ADJUST WWW HOME DIR
+sudo vim /etc/httpd/conf/httpd.conf
+    ServerAdmin kyolee310@gmail.com
+
+
+### INSTALL PHP and PHP-ZTS for PRE-FORKING
+sudo yum install php
+#yum install php-zts
+
+### ADJUST TIME ZONE
+sudo ln --symbolic --force /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
+sudo ntpd restart
+
+### RESTART HTTPD
+sudo service httpd restart
+
+### VERIFY THAT WWW IS UP AND RUNNING
+ex. On a Browsers:
+http://ec2-50-16-81-239.compute-1.amazonaws.com
+
+### INSTALL OTHER SERVICES
+sudo yum -y install git
+
+
