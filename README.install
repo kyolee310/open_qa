@@ -48,4 +48,18 @@ http://ec2-50-16-81-239.compute-1.amazonaws.com
 ### INSTALL OTHER SERVICES
 sudo yum -y install git
 
+...
+
+=== RHEL 6 ===
+
+### ADD FOLLOWING STEPS FROM === AMAZON LINIX AMI INSTRUCTION
+
+### INSTALL SYSTEM-CONFIG-FIREWALL AND OPEN PORT 80(HTTP)
+yum install system-config-firewall
+system-config-firewall
+
+### INSTALL PHP and PHP-ZTS for PRE-FORKING
+yum install php
+yum install php-zts
+/etc/init.d/httpd restart
 
