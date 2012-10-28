@@ -8,7 +8,7 @@ from optparse import OptionParser
 def run_cmd(command):
 	print "CMD: " + command
 	print
-#	print commands.getoutput(command)
+	print commands.getoutput(command)
 	print	
 	time.sleep(1)
 	return

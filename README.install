@@ -2,6 +2,42 @@
 
 === AMAZON LINUX AMI ===
 
+Step 1. Log in to AWS Instance
+
+Ex.
+
+ssh -i <my_key> ec2-user@ec2-##-###-###-###.us-####-#.compute.amazonaws.com
+
+Step 2. Install git
+
+sudo yum -y install git
+
+Step 3. Git Clone open_qa Project
+
+git clone git://github.com/kyolee310/open_qa.git
+
+Step 4. Go to the Directory ./open_qa/script
+
+cd ./open_qa/script/
+
+Step 5. Run the Installer
+
+./open_qa-installer.py -t amazon -e <your_email>
+
+Step 6. Go to the Directory /var/www/html/cache
+
+cd /var/www/html/cache
+
+Step 7. Download the Cache Files from QA SERVER
+
+?
+
+
+
+###### MANUAL STEPS BELOW ######
+
+=== AMAZON LINUX AMI ===
+
 ### LOGIN AS USER ec2-user
 ssh -i <mykey> ec2-user@ec2-50-112-23-171.us-west-2.compute.amazonaws.com
 
