@@ -2,13 +2,13 @@
 
 import time
 import sys
-import commands
+import os
 from optparse import OptionParser
 
 def run_cmd(command):
 	print "CMD: " + command
 	print
-	print commands.getoutput(command)
+	os.system(command)
 	print	
 	time.sleep(1)
 	return
