@@ -57,17 +57,17 @@ def main():
 	cmd = "sudo httpd -V"
 	run_cmd(cmd)
 
-	cmd = "sed --in-place 's/#HTTPD=/HTTPD=/' /etc/sysconfig/httpd"
+	cmd = "sudo sed --in-place 's/#HTTPD=/HTTPD=/' /etc/sysconfig/httpd"
 	run_cmd(cmd)
 
-	cmd = "sed --in-place 's/ServerAdmin .*/ServerAdmin " + options.email + "/' /etc/httpd/conf/httpd.conf"
+	cmd = "sudo sed --in-place 's/ServerAdmin .*/ServerAdmin " + options.email + "/' /etc/httpd/conf/httpd.conf"
 	run_cmd(cmd)
 	
-	cmd = "yum -y install php"
+	cmd = "sudo yum -y install php"
 	run_cmd(cmd)
 
 	if options.instance is "rhel6":
-		cmd = "yum -y install php-zts"
+		cmd = "sudo yum -y install php-zts"
         	run_cmd(cmd)
 
 	cmd = "sudo ln --symbolic --force /usr/share/zoneinfo/America/Los_Angeles /etc/localtime"
