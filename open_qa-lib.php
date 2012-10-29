@@ -61,7 +61,8 @@ function print_test_result_well($test_date, $test_time, $testname, $uid, $sequen
 
 #	$test_id = $testname . "_UID-" . $uid;
 	$test_id = $test_date;
-	$test_result_url = "http://qa-server.eucalyptus-systems.com/euca-qa/display_test.php?testname=" . $testname . "&uid=" . $uid;	
+#	$test_result_url = "http://qa-server.eucalyptus-systems.com/euca-qa/display_test.php?testname=" . $testname . "&uid=" . $uid;	
+	$test_result_url = "./open_qa-display_test.php?testname=" . $testname . "&uid=" . $uid;	
 	
 	print "<div class=\"well well-small .pull-right\" id=\"testBlock\" title=\"$test_id\" style=\"height: 70%; width: 100%; background-color: #EFFBF5;\">";
 	print "<button class=\"close\">&times;</button>";
