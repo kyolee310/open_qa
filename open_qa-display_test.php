@@ -64,12 +64,12 @@ function updatepage(divbox, str){
 
 function displayTestunitInfo(str1, str2, str3, divbox){
 	var newtab = "";
-	newtab = "http://qa-server.eucalyptus-systems.com/euca-qa/display_testunit_info.php?testunit=" + str3;
+	newtab = "./open_qa-display_testunit_info.php?testunit=" + str3;
 	window.open(newtab);
 };
 
 function extra_menu(str1, str2, str3, divbox){
-	xmlhttpPost("/euca-qa/helper/display_test_helper/display_extra_menu.php", str1, str2, str3, divbox);
+	xmlhttpPost("./open_qa-display_extra_menu.php", str1, str2, str3, divbox);
 };
 
 function displayEmpty(divbox){
