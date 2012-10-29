@@ -21,12 +21,21 @@ if( @ARGV > 1 ){
 
 print "\n";
 
-###	CREATE A DIRECTORY FOR TRANSFER
+###	CREATE DIRECTORIES FOR CACHE TRANSFER
 print("rm -rf $storage_dir\n");
 system("rm -rf $storage_dir");
 
 print("mkdir -p $storage_dir/graphs\n");
 system("mkdir -p $storage_dir/graphs");
+
+print("mkdir -p $storage_dir/test_info/procedures\n");
+system("mkdir -p $storage_dir/test_info/procedures");
+
+print("mkdir -p $storage_dir/config_file_storage/inactive\n");
+system("mkdir -p $storage_dir/config_file_storage/inactive");
+
+print("mkdir -p $storage_dir/test_share/mod_2b_tested_dir\n");
+system("mkdir -p $storage_dir/test_share/mod_2b_tested_dir");
 
 print "\n";
 
@@ -68,14 +77,29 @@ for(my $i=0; $i<@testname_array; $i++){
 	my $cache_filename = "$cache_dir/open_qa_" . $testname . "_UID_" . $uid . ".cache";
 	my $table_body_filename = "$cache_dir/body_" . $testname . "_UID_" . $uid . ".cache";
 	my $graph_filename = "/home/www/euca-qa/test-history-graphs/graphs/graph_test_history_" . $testname . ".png";
-
+	my $test_config_filname = "/home/qa-server/control_module/config_file_storage/inactive/" . $testname . ".conf";;
+	
 	copy_the_file_over_to_storage($cache_filename, $storage_dir);
 	copy_the_file_over_to_storage($table_body_filename, $storage_dir);
 	copy_the_file_over_to_storage($graph_filename, $storage_dir . "/graphs");
+	copy_the_file_over_to_storage($test_config_filname, $storage_dir . "/config_file_storage/inactive/.");
 };
 
+
+###	COPY THE TEST INFORMATION FILES OVER TO THE STORAGE DIR
+my $test_info_file = "/home/www/euca-qa/helper/display_testunit_info_helper/testunit_info.txt";
+copy_the_file_over_to_storage($test_info_file, $storage_dir . "/test_info/.");
 print "\n";
 
+my $procedure_files = "/home/www/euca-qa/helper/display_testunit_info_helper/procedures/*";
+copy_the_file_over_to_storage($procedure_files, $storage_dir . "/test_info/procedures/.");
+print "\n";
+
+###	COPY MOD_2B_TESTED_DIR FROM MAIN TESTER
+my $command = "scp -r -o BatchMode=yes -o ServerAliveInterval=3 -o ServerAliveCountMax=10 -o StrictHostKeyChecking=no test-server\@litmus:~/test_share/mod_2b_tested_dir/. $storage_dir/test_share/mod_2b_tested_dir/.";
+system($command);
+
+print "\n";
 print "rm -f " . $storage_dir . ".tar.gz\n"; 
 system("rm -f " . $storage_dir . ".tar.gz"); 
 
