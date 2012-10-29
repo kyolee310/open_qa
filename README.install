@@ -16,21 +16,34 @@ Step 3. Git Clone open_qa Project
 
 git clone git://github.com/kyolee310/open_qa.git
 
-Step 4. Go to the Directory ./open_qa/script
+Step 4. Run the Installer
 
 cd ./open_qa/script/
 
-Step 5. Run the Installer
-
 ./open_qa-installer.py -t amazon -e <your_email>
 
-Step 6. Go to the Directory /var/www/html/cache
+Step 5. Using a web-browser, check out the link
 
-cd /var/www/html/cache
+http://c2-##-###-###-###.us-####-#.compute.amazonaws.com/open_qa.php
 
-Step 7. Download the Cache Files from QA SERVER
+Ensure that you can see the tree
 
-?
+Step 6. Transfer the Cache Files from QA SERVER
+
+On QA-SERVER's /tmp/temp/webcache directory,
+
+scp -i <my_key> ./open_qa*  ec2-user@ec2-##-###-##-###.us-####-#.compute.amazonaws.com:~/open_qa/webcache/.
+
+scp -i <my_key> ./this_date*  ec2-user@ec2-##-###-##-###.us-####-#.compute.amazonaws.com:~/open_qa/webcache/.
+
+On the AWS Instance,
+
+sudo cp ~/open_qa/webcache/* /var/www/html/webcache/.
+
+Step 7. Using a web-broswer, check out the link and validate that open_qa is up and running
+
+http://c2-##-###-###-###.us-####-#.compute.amazonaws.com/open_qa.php
+
 
 
 
