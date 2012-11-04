@@ -37,7 +37,13 @@ $(document).ready(function() {
     					}
 				}
 			});
-		}	
+		}
+	
+		if( isMobile.any() ){
+			$("#tree").hide();
+			$("#myscreen").hide();
+			$("#empty_field").hide();
+		};
 	});
 
 	$('.top-menu').on('click', function(event){
@@ -68,6 +74,13 @@ $(document).ready(function() {
 		};
 
 		$("#"+this.id).addClass("active");
+
+	
+		if( isMobile.any() ){
+			$("#tree").hide();
+			$("#myscreen").hide();
+			$("#empty_field").hide();
+		};
 	});
 
 	$(window).resize(function() {
@@ -88,8 +101,19 @@ $(document).ready(function() {
 			$("#empty_field").show();
 			$("#tree").show();
 		}
+
+		if( isMobile.any() ){
+			$("#tree").hide();
+			$("#myscreen").hide();
+			$("#empty_field").hide();
+		};
 	});
 
+	if( isMobile.any() ){
+		$("#tree").hide();
+		$("#myscreen").hide();
+		$("#empty_field").hide();
+	};
 });
 
 
@@ -115,3 +139,24 @@ function printOnScreen(this_info){
 	document.getElementById("myscreen").innerHTML = this_info;
 };
 
+
+var isMobile = {
+    Android: function() {
+        return navigator.userAgent.match(/Android/i);
+    },
+    BlackBerry: function() {
+        return navigator.userAgent.match(/BlackBerry/i);
+    },
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    Opera: function() {
+        return navigator.userAgent.match(/Opera Mini/i);
+    },
+    Windows: function() {
+        return navigator.userAgent.match(/IEMobile/i);
+    },
+    any: function() {
+        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+    }	
+};

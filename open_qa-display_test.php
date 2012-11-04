@@ -64,7 +64,8 @@ function updatepage(divbox, str){
 
 function displayTestunitInfo(str1, str2, str3, divbox){
 	var newtab = "";
-	newtab = "./open_qa-display_testunit_info.php?testunit=" + str3;
+//	newtab = "./open_qa-display_testunit_info.php?testunit=" + str3;
+	newtab = "https://github.com/eucalyptus-qa/" + str3;
 	window.open(newtab);
 };
 
@@ -342,6 +343,10 @@ function process_test_table($table, $this_testname, $this_uid){
 		if( $t_unit != ""){
 		#	print "<td>$t_unit";
 #			print "<td><a href=\"./display_testunit_info.php?testunit=$t_unit\" id=\"t_unit\" ";
+
+			if( preg_match("/^(\S+)_No_(\d+)$/", $t_unit, $match) ){
+				$t_unit = $match[1];
+			};
 
 			print "<td><a href=\"$PHP_SELF\" id=\"t_unit\" ";
 			print "onclick=\"JavaScript:displayTestunitInfo('$this_testname', '$this_uid', '$t_unit', 'extra_menu');\" ";
